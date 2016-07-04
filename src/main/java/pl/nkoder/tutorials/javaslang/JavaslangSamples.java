@@ -1,9 +1,13 @@
 package pl.nkoder.tutorials.javaslang;
 
+import javaslang.Function1;
 import javaslang.Tuple;
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
 class JavaslangSamples implements Samples {
+
+    private final Function1<Integer, Integer> add5 = number -> number + 5;
+    private final Function1<Integer, Integer> multiplyBy3 = number -> number * 3;
 
     @Override
     public Coordinates rotateClockwiseAndMultiplyBy10(Coordinates originalCoordinates) {
@@ -14,6 +18,16 @@ class JavaslangSamples implements Samples {
                 y -> 10 * y
             )
             .transform((x, y) -> Coordinates.of(x, y));
+    }
+
+    @Override
+    public int add5AndMultiplyBy3(int number) {
+        return add5.andThen(multiplyBy3).apply(number);
+    }
+
+    @Override
+    public int multiplyBy3AndAdd5(int number) {
+        return add5.compose(multiplyBy3).apply(number);
     }
 
 }
