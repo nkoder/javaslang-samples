@@ -1,5 +1,6 @@
 package pl.nkoder.tutorials.javaslang;
 
+import com.google.common.collect.Lists;
 import javaslang.Function1;
 import javaslang.Function2;
 import javaslang.Tuple;
@@ -7,8 +8,8 @@ import javaslang.collection.List;
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
 import java.util.Collection;
+import java.util.function.Function;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static java.lang.String.format;
 import static javaslang.Function1.lift;
 
@@ -16,7 +17,6 @@ class JavaslangSamples extends Samples {
 
     private final Function1<Integer, Integer> add5 = number -> number + 5;
     private final Function1<Integer, Integer> multiplyBy3 = number -> number * 3;
-    private final Function2<Character, String, Integer> countOccurrencesFunction = (characterToCount, words) -> countOccurrences(characterToCount, words);
 
     @Override
     public Coordinates rotateClockwiseAndMultiplyBy10(Coordinates originalCoordinates) {
@@ -49,10 +49,21 @@ class JavaslangSamples extends Samples {
 
     @Override
     Collection<Integer> countOccurrences(char characterToCount, Collection<String> words) {
-        Function1<String, Integer> countCharacter = countOccurrencesFunction.curried().apply(characterToCount);
+        Function1<String, Integer> countCharacter = Function2.<Character, String, Integer>of(this::countOccurrences)
+            .curried()
+            .apply(characterToCount);
         return List.ofAll(words)
-            .map(word -> countCharacter.apply(word))
-            .transform(occurrences -> newArrayList(occurrences));
+            .map(countCharacter)
+            .transform(Lists::newArrayList);
+    }
+
+    @Override
+    <V, R> Collection<R> compute(Function<V, R> function, Collection<V> values) {
+        Function1<V, R> slangedFunction = value -> function.apply(value);
+        Function1<V, R> cachedFunction = slangedFunction.memoized();
+        return List.ofAll(values)
+            .map(cachedFunction)
+            .transform(Lists::newArrayList);
     }
 
 }

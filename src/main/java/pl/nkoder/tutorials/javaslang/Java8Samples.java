@@ -3,8 +3,10 @@ package pl.nkoder.tutorials.javaslang;
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.function.Function;
 
+import static com.google.common.collect.Maps.newHashMap;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 
@@ -45,6 +47,20 @@ class Java8Samples extends Samples {
     Collection<Integer> countOccurrences(char characterToCount, Collection<String> words) {
         return words.stream()
             .map(word -> countOccurrences(characterToCount, word))
+            .collect(toList());
+    }
+
+    @Override
+    <V, R> Collection<R> compute(Function<V, R> function, Collection<V> values) {
+        Map<V, R> cache = newHashMap();
+        Function<V, R> cachedFunction = value -> {
+            if (!cache.containsKey(value)) {
+                cache.put(value, function.apply(value));
+            }
+            return cache.get(value);
+        };
+        return values.stream()
+            .map(cachedFunction)
             .collect(toList());
     }
 

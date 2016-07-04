@@ -22,11 +22,11 @@ Javaslang has many features. Below there is a To Do list with list of
 those features. Every feature covered by samples in this project
 is marked as done.
 
-- [ ] [tuples]( http://www.javaslang.io/javaslang-docs/#_tuples )
-- [ ] [functions: composition]( http://www.javaslang.io/javaslang-docs/#_composition )
-- [ ] [functions: lifting]( http://www.javaslang.io/javaslang-docs/#_lifting )
-- [ ] [functions: currying]( http://www.javaslang.io/javaslang-docs/#_currying )
-- [ ] [functions: memoization]( http://www.javaslang.io/javaslang-docs/#_memoization )
+- [x] [tuples]( http://www.javaslang.io/javaslang-docs/#_tuples )
+- [x] [functions: composition]( http://www.javaslang.io/javaslang-docs/#_composition )
+- [x] [functions: lifting]( http://www.javaslang.io/javaslang-docs/#_lifting )
+- [x] [functions: currying]( http://www.javaslang.io/javaslang-docs/#_currying )
+- [x] [functions: memoization]( http://www.javaslang.io/javaslang-docs/#_memoization )
 - [ ] [values: `Option`]( http://www.javaslang.io/javaslang-docs/#_option )
 - [ ] [values: `Try`]( http://www.javaslang.io/javaslang-docs/#_try )
 - [ ] [values: `Lazy`]( http://www.javaslang.io/javaslang-docs/#_lazy )

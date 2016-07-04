@@ -3,6 +3,7 @@ package pl.nkoder.tutorials.javaslang;
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
 import java.util.Collection;
+import java.util.function.Function;
 
 abstract class Samples {
 
@@ -15,6 +16,8 @@ abstract class Samples {
     abstract String addAnSheepTo(String sheepAsText);
 
     abstract Collection<Integer> countOccurrences(char characterToCount, Collection<String> words);
+
+    abstract <V, R> Collection<R> compute(Function<V, R> function, Collection<V> values);
 
     int parseSheepIn(String sheepAsText) {
         String[] tokens = sheepAsText.split(" ");
