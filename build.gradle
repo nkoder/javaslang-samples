@@ -4,6 +4,12 @@ repositories {
     mavenCentral()
 }
 
+test {
+    testLogging {
+        events "passed", "failed"
+    }
+}
+
 dependencies {
 
     compile 'io.javaslang:javaslang:2.0.2'

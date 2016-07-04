@@ -4,14 +4,17 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SamplesTest {
+public abstract class SamplesTest {
+
+    abstract Samples newSamples();
 
     @Test
-    public void initializes() throws Exception {
+    public void handling_exceptions() throws Exception {
         // given
-        Samples samples = new Samples();
+        Samples samples = newSamples();
 
-        // expect
-        assertThat(samples).isNotNull();
+        // when
+        assertThat(samples.divideAsInts("7", "2")).isEqualTo("3");
+        assertThat(samples.divideAsInts("7", "0")).isEqualTo("n/a");
     }
 }

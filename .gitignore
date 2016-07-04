@@ -5,6 +5,7 @@
 .idea/*
 !.idea/codeStyleSettings.xml
 !.idea/dictionaries/
+!.idea/inspectionProfiles/
 
 # Apple OS X
 .DS_Store

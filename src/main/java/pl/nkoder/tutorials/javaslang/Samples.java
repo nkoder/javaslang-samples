@@ -1,4 +1,7 @@
 package pl.nkoder.tutorials.javaslang;
 
-public class Samples {
+interface Samples {
+
+    String divideAsInts(String dividendAsText, String divisorAsText);
+
 }
