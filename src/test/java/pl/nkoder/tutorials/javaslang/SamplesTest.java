@@ -3,6 +3,9 @@ package pl.nkoder.tutorials.javaslang;
 import org.junit.Test;
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
+import java.util.Collection;
+
+import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class SamplesTest {
@@ -33,5 +36,12 @@ public abstract class SamplesTest {
         assertThat(samples.addAnSheepTo("9 sheep")).isEqualTo("10 sheep");
         assertThat(samples.addAnSheepTo("1 cat")).isEqualTo("You know nothing, John Snow");
         assertThat(samples.addAnSheepTo("-1 sheep")).isEqualTo("You know nothing, John Snow");
+    }
+
+    @Test
+    public void test_for_function_currying_sample() throws Exception {
+        Collection<String> words = newArrayList("cat", "dog", "chinchilla");
+
+        assertThat(samples.countOccurrences('c', words)).containsExactly(1, 0, 2);
     }
 }

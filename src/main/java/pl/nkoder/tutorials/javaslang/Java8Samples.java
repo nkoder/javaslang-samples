@@ -2,9 +2,11 @@ package pl.nkoder.tutorials.javaslang;
 
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
+import java.util.Collection;
 import java.util.function.Function;
 
 import static java.lang.String.format;
+import static java.util.stream.Collectors.toList;
 
 class Java8Samples extends Samples {
 
@@ -37,6 +39,13 @@ class Java8Samples extends Samples {
             return "You know nothing, John Snow";
         }
         return format("%s sheep", sheep + 1);
+    }
+
+    @Override
+    Collection<Integer> countOccurrences(char characterToCount, Collection<String> words) {
+        return words.stream()
+            .map(word -> countOccurrences(characterToCount, word))
+            .collect(toList());
     }
 
 }

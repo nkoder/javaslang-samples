@@ -17,6 +17,7 @@ dependencies {
 
     compile 'io.javaslang:javaslang:2.0.2'
     compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'com.google.guava:guava:19.0'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:3.5.1'

@@ -2,6 +2,8 @@ package pl.nkoder.tutorials.javaslang;
 
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
+import java.util.Collection;
+
 abstract class Samples {
 
     abstract Coordinates rotateClockwiseAndMultiplyBy10(Coordinates originalCoordinates);
@@ -11,6 +13,8 @@ abstract class Samples {
     abstract int multiplyBy3AndAdd5(int number);
 
     abstract String addAnSheepTo(String sheepAsText);
+
+    abstract Collection<Integer> countOccurrences(char characterToCount, Collection<String> words);
 
     int parseSheepIn(String sheepAsText) {
         String[] tokens = sheepAsText.split(" ");
@@ -22,5 +26,15 @@ abstract class Samples {
             throw new IllegalArgumentException("Number of sheep has to be positive");
         }
         return sheep;
+    }
+
+    int countOccurrences(char characterToCount, String word) {
+        int occurrences = 0;
+        for (int index = 0; index < word.length(); index++) {
+            if (word.charAt(index) == characterToCount) {
+                occurrences++;
+            }
+        }
+        return occurrences;
     }
 }
