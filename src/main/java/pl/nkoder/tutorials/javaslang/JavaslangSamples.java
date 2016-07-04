@@ -1,16 +1,19 @@
 package pl.nkoder.tutorials.javaslang;
 
-import javaslang.control.Try;
+import javaslang.Tuple;
+import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
 class JavaslangSamples implements Samples {
 
     @Override
-    public String divideAsInts(String dividendAsText, String divisorAsText) {
-        Integer dividend = Integer.valueOf(dividendAsText);
-        Integer divisor = Integer.valueOf(divisorAsText);
-        return Try.of(() -> dividend / divisor)
-            .map(result -> String.valueOf(result))
-            .recover(exception -> "n/a")
-            .get();
+    public Coordinates rotateClockwiseAndMultiplyBy10(Coordinates originalCoordinates) {
+        return Tuple.of(originalCoordinates.x, originalCoordinates.y)
+            .map((x, y) -> Tuple.of(y, -x))
+            .map(
+                x -> 10 * x,
+                y -> 10 * y
+            )
+            .transform((x, y) -> Coordinates.of(x, y));
     }
+
 }
