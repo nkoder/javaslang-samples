@@ -5,9 +5,9 @@ import javaslang.Function1;
 import javaslang.Function2;
 import javaslang.Tuple;
 import javaslang.collection.List;
+import javaslang.control.Option;
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
-import java.util.Collection;
 import java.util.function.Function;
 
 import static java.lang.String.format;
@@ -48,7 +48,7 @@ class JavaslangSamples extends Samples {
     }
 
     @Override
-    Collection<Integer> countOccurrences(char characterToCount, Collection<String> words) {
+    Iterable<Integer> countOccurrences(char characterToCount, Iterable<String> words) {
         Function1<String, Integer> countCharacter = Function2.<Character, String, Integer>of(this::countOccurrences)
             .curried()
             .apply(characterToCount);
@@ -58,12 +58,19 @@ class JavaslangSamples extends Samples {
     }
 
     @Override
-    <V, R> Collection<R> compute(Function<V, R> function, Collection<V> values) {
+    <V, R> Iterable<R> compute(Function<V, R> function, Iterable<V> values) {
         Function1<V, R> slangedFunction = value -> function.apply(value);
         Function1<V, R> cachedFunction = slangedFunction.memoized();
         return List.ofAll(values)
             .map(cachedFunction)
             .transform(Lists::newArrayList);
+    }
+
+    @Override
+    Iterable<Integer> validIntegersFrom(Iterable<String> integersAsText) {
+        return List.ofAll(asOptionalIntegers(integersAsText))
+            .map(Option::ofOptional)
+            .flatMap(presentOption -> presentOption);
     }
 
 }

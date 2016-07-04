@@ -3,7 +3,6 @@ package pl.nkoder.tutorials.javaslang;
 import org.junit.Test;
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -47,7 +46,7 @@ public abstract class SamplesTest {
     @Test
     public void test_for_function_currying_sample() throws Exception {
         // given
-        Collection<String> words = newArrayList("cat", "dog", "chinchilla");
+        Iterable<String> words = newArrayList("cat", "dog", "chinchilla");
 
         // then
         assertThat(samples.countOccurrences('c', words)).containsExactly(1, 0, 2);
@@ -70,5 +69,14 @@ public abstract class SamplesTest {
         // and then
         assertThat(callsCountByArguments.get(1)).isEqualTo(1);
         assertThat(callsCountByArguments.get(5)).isEqualTo(1);
+    }
+
+    @Test
+    public void test_for_Option_sample() throws Exception {
+        // given
+        Iterable<String> numbersAsText = newArrayList("1", "-2", "notAnInteger", "999", "0.123", "0");
+
+        // expect
+        assertThat(samples.validIntegersFrom(numbersAsText)).containsExactly(1, -2, 999, 0);
     }
 }

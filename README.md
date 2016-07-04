@@ -2,6 +2,10 @@
 
 Samples of code with and without [Javaslang]( http://www.javaslang.io/ ).
 
+Inspired by [Javaslang documentation]( http://www.javaslang.io/javaslang-docs )
+and ["Javaslang - functional Java done right" presentation]( http://slides.com/pivovarit/javaslang-functional-java-done-right )
+by [Grzegorz Piwowarek]( https://twitter.com/pivovarit ). 
+
 ## Usage
 
 `./gradlew clean test` is the main command to run tests.
@@ -27,7 +31,7 @@ is marked as done.
 - [x] [functions: lifting]( http://www.javaslang.io/javaslang-docs/#_lifting )
 - [x] [functions: currying]( http://www.javaslang.io/javaslang-docs/#_currying )
 - [x] [functions: memoization]( http://www.javaslang.io/javaslang-docs/#_memoization )
-- [ ] [values: `Option`]( http://www.javaslang.io/javaslang-docs/#_option )
+- [x] [values: `Option`]( http://www.javaslang.io/javaslang-docs/#_option )
 - [ ] [values: `Try`]( http://www.javaslang.io/javaslang-docs/#_try )
 - [ ] [values: `Lazy`]( http://www.javaslang.io/javaslang-docs/#_lazy )
 - [ ] [values: `Either`]( http://www.javaslang.io/javaslang-docs/#_either )

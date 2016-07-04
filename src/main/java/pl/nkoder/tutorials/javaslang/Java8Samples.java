@@ -2,10 +2,11 @@ package pl.nkoder.tutorials.javaslang;
 
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
-import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
@@ -44,14 +45,14 @@ class Java8Samples extends Samples {
     }
 
     @Override
-    Collection<Integer> countOccurrences(char characterToCount, Collection<String> words) {
-        return words.stream()
+    Iterable<Integer> countOccurrences(char characterToCount, Iterable<String> words) {
+        return newArrayList(words).stream()
             .map(word -> countOccurrences(characterToCount, word))
             .collect(toList());
     }
 
     @Override
-    <V, R> Collection<R> compute(Function<V, R> function, Collection<V> values) {
+    <V, R> Iterable<R> compute(Function<V, R> function, Iterable<V> values) {
         Map<V, R> cache = newHashMap();
         Function<V, R> cachedFunction = value -> {
             if (!cache.containsKey(value)) {
@@ -59,8 +60,17 @@ class Java8Samples extends Samples {
             }
             return cache.get(value);
         };
-        return values.stream()
+        return newArrayList(values).stream()
             .map(cachedFunction)
+            .collect(toList());
+    }
+
+    @Override
+    Iterable<Integer> validIntegersFrom(Iterable<String> numbersAsText) {
+        return newArrayList(asOptionalIntegers(numbersAsText))
+            .stream()
+            .filter(Optional::isPresent)
+            .map(Optional::get)
             .collect(toList());
     }
 
