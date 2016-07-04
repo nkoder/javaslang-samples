@@ -4,7 +4,10 @@ import javaslang.Function1;
 import javaslang.Tuple;
 import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
-class JavaslangSamples implements Samples {
+import static java.lang.String.format;
+import static javaslang.Function1.lift;
+
+class JavaslangSamples extends Samples {
 
     private final Function1<Integer, Integer> add5 = number -> number + 5;
     private final Function1<Integer, Integer> multiplyBy3 = number -> number * 3;
@@ -28,6 +31,14 @@ class JavaslangSamples implements Samples {
     @Override
     public int multiplyBy3AndAdd5(int number) {
         return add5.compose(multiplyBy3).apply(number);
+    }
+
+    @Override
+    public String addAnSheepTo(String sheepAsText) {
+        return lift(this::parseSheepIn)
+            .apply(sheepAsText)
+            .map(sheep -> format("%s sheep", sheep + 1))
+            .getOrElse("You know nothing, John Snow");
     }
 
 }

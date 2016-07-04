@@ -4,7 +4,9 @@ import pl.nkoder.tutorials.javaslang.helpers.Coordinates;
 
 import java.util.function.Function;
 
-class Java8Samples implements Samples {
+import static java.lang.String.format;
+
+class Java8Samples extends Samples {
 
     private final Function<Integer, Integer> add5 = number -> number + 5;
     private final Function<Integer, Integer> multiplyBy3 = number -> number * 3;
@@ -24,6 +26,17 @@ class Java8Samples implements Samples {
     @Override
     public int multiplyBy3AndAdd5(int number) {
         return add5.apply(multiplyBy3.apply(number));
+    }
+
+    @Override
+    public String addAnSheepTo(String sheepAsText) {
+        int sheep;
+        try {
+            sheep = parseSheepIn(sheepAsText);
+        } catch (Exception exception) {
+            return "You know nothing, John Snow";
+        }
+        return format("%s sheep", sheep + 1);
     }
 
 }

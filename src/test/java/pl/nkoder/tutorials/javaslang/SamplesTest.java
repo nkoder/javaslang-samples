@@ -25,4 +25,13 @@ public abstract class SamplesTest {
         assertThat(samples.add5AndMultiplyBy3(2)).isEqualTo(21);
         assertThat(samples.multiplyBy3AndAdd5(2)).isEqualTo(11);
     }
+
+    @Test
+    public void test_for_function_lifting_sample() throws Exception {
+        assertThat(samples.addAnSheepTo("0 sheep")).isEqualTo("1 sheep");
+        assertThat(samples.addAnSheepTo("1 sheep")).isEqualTo("2 sheep");
+        assertThat(samples.addAnSheepTo("9 sheep")).isEqualTo("10 sheep");
+        assertThat(samples.addAnSheepTo("1 cat")).isEqualTo("You know nothing, John Snow");
+        assertThat(samples.addAnSheepTo("-1 sheep")).isEqualTo("You know nothing, John Snow");
+    }
 }
