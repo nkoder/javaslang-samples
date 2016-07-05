@@ -62,8 +62,7 @@ class JavaslangSamples extends Samples {
         Function1<V, R> slangedFunction = value -> function.apply(value);
         Function1<V, R> cachedFunction = slangedFunction.memoized();
         return List.ofAll(values)
-            .map(cachedFunction)
-            .transform(Lists::newArrayList);
+            .map(cachedFunction);
     }
 
     @Override
